@@ -1,7 +1,5 @@
-import type { Metadata } from "next";
+import MainLayout from "./components/MainLayout";
 import "./globals.css";
-
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -10,7 +8,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        {children}
+        <MainLayout>
+          {children}
+        </MainLayout>
       </body>
     </html>
   );
