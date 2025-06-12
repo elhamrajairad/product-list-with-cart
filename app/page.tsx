@@ -1,6 +1,7 @@
 import React from 'react'
 import SingleProduct from './components/cart-product/SingleProduct'
 import Products from './components/cart-product/Products'
+import ModalOrder from './components/shopping-cart/ModalOrder'
 
 export default function Home() {
   return (

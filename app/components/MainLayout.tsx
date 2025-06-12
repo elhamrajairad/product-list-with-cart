@@ -1,7 +1,7 @@
 import React from 'react'
 import { IChildrenProps } from '../types'
 import Container from './Container'
-import ShoppingCart from './shopoing-cart/ShoppingCart'
+import ShoppingCart from './shopping-cart/ShoppingCart'
 
 export default function MainLayout({ children }: IChildrenProps) {
     return (
