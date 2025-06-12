@@ -14,7 +14,7 @@ export default function SingleProduct() {
             </section>
             <section>
                 <small className="text-sm font-light text-secondary">Waffle</small>
-                <h2 className="font-bold text-xl text-secondary my-1">Waffle with Berries</h2>
+                <h2 className="font-bold lg:text-[15px] xl:text-xl text-secondary my-1 ">Waffle with Berries</h2>
                 <p className="text-danger font-bold ">$6.50</p>
             </section>
         </section>
