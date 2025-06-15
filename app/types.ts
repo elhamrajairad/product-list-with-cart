@@ -5,6 +5,7 @@ export interface IChildrenProps {
 }
 
 export interface Deserts {
+  id: number;
   image: Image;
   name: string;
   category: string;
