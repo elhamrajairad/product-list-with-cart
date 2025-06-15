@@ -5,7 +5,8 @@ import { Deserts, IChildrenProps } from "../types";
 export interface IDesertsProps {
     deserts: Deserts[];
     shoppingCart: IShoppingCart[]
-    addToShoppingCart: (id: number) => void
+    addToShoppingCart: (id: number) => void;
+    removeFromShoppingCart: (id: number) => void
 }
 export interface IShoppingCart {
     idProduct: number;
@@ -51,13 +52,16 @@ export function ProviderContextDeserts({ children }: IChildrenProps) {
             }
         })
     }
+    function removeFromShoppingCart(id: number) {
+        setShoppingCart((prev) => prev.filter(item => item.idProduct !== id))
+    }
 
     useEffect(() => {
         getDeserts()
     }, [])
 
     return (
-        <DesertsContext.Provider value={{ deserts, shoppingCart, addToShoppingCart }}>
+        <DesertsContext.Provider value={{ deserts, shoppingCart, addToShoppingCart, removeFromShoppingCart }}>
             {children}
         </DesertsContext.Provider>
     );
