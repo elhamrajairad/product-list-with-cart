@@ -1,14 +1,13 @@
 "use client"
 import Image from 'next/image'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import bgShoppingCart from "@/public/illustration-empty-cart.svg"
 import { useDeserts } from '@/app/context/DesertsContext'
 import ItemCart from './ItemCart'
 import Button from '../Button'
 export default function ShoppingCart() {
-    const { shoppingCart, deserts } = useDeserts()
+    const { shoppingCart, deserts, totalPrice } = useDeserts()
     const items = deserts.filter(desert => shoppingCart.some(item => item.idProduct === desert.id))
-    const totalPrice = items.reduce((sum, item) => sum + item.price, 0)
 
     return (
         <section className='bg-white rounded-2xl p-3 mt-12'>
@@ -26,10 +25,7 @@ export default function ShoppingCart() {
                             <p>Total Price:</p>
                             <p className='text-xl font-bold'>${totalPrice}</p>
                         </section>
-                        <Button>Confirm Order</Button>
                     </section>}
-
-
             </section>
         </section>
     )

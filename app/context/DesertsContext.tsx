@@ -4,9 +4,11 @@ import { Deserts, IChildrenProps } from "../types";
 
 export interface IDesertsProps {
     deserts: Deserts[];
-    shoppingCart: IShoppingCart[]
+    shoppingCart: IShoppingCart[];
+    totalPrice: number;
     addToShoppingCart: (id: number) => void;
-    removeFromShoppingCart: (id: number) => void
+    removeFromShoppingCart: (id: number) => void;
+    decreesDesert: (id: number) => void;
 }
 export interface IShoppingCart {
     idProduct: number;
@@ -25,6 +27,7 @@ export function useDeserts() {
 export function ProviderContextDeserts({ children }: IChildrenProps) {
     const [deserts, setDeserts] = useState<Deserts[]>([]);
     const [shoppingCart, setShoppingCart] = useState<IShoppingCart[]>([])
+    const [totalPrice, setTotalPrice] = useState<number>(0)
 
     async function getDeserts() {
         try {
@@ -52,16 +55,43 @@ export function ProviderContextDeserts({ children }: IChildrenProps) {
             }
         })
     }
+    function decreesDesert(id: number) {
+        setShoppingCart((prev) => {
+            return prev
+                .map(item => {
+                    if (item.idProduct === id) {
+                        return { ...item, qty: item.qty - 1 };
+                    }
+                    return item;
+                })
+                .filter(item => item.qty > 0);
+        });
+    }
+
+
     function removeFromShoppingCart(id: number) {
         setShoppingCart((prev) => prev.filter(item => item.idProduct !== id))
     }
+    function totalPriceHandler() {
+        const sumPrices = shoppingCart.reduce((sum, cartItem) => {
+            const desert = deserts.find(d => d.id === cartItem.idProduct);
+            if (desert) {
+                return sum + desert.price * cartItem.qty;
+            }
+            return sum;
+        }, 0);
+        setTotalPrice(sumPrices);
+    }
 
+    useEffect(() => {
+        totalPriceHandler()
+    }, [shoppingCart])
     useEffect(() => {
         getDeserts()
     }, [])
 
     return (
-        <DesertsContext.Provider value={{ deserts, shoppingCart, addToShoppingCart, removeFromShoppingCart }}>
+        <DesertsContext.Provider value={{ deserts, shoppingCart, totalPrice, addToShoppingCart, removeFromShoppingCart, decreesDesert }}>
             {children}
         </DesertsContext.Provider>
     );
