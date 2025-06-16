@@ -11,13 +11,13 @@ export default function SingleProduct({ category, image, name, price, id }: Dese
     return (
         <section className={`mb-6 overflow-x-hidden `}>
             <section className="mb-5 xl:w-[15rem] lg:w-[12rem] relative">
-                <Image src={image.desktop} alt="" className={`rounded-2xl ${Boolean(checkProduct) ? "border-4 border-primary " : ""}`} width={300} height={200} />
+                <Image src={image.desktop} alt="" className={`rounded-2xl ${Boolean(checkProduct) ? "border-2 border-primary " : ""}`} width={300} height={200} />
                 {Boolean(checkProduct) ? <IncreaseAndDecreesToShoppingCart id={id} /> : <button
                     className="border cursor-pointer border-primary absolute -bottom-5 z-30 rounded-full p-2 flex justify-around items-center  bg-white left-0 right-0 w-3/5 mx-auto"
                     onClick={() => addToShoppingCart(id)}
                 >
                     <Image src={addToCartImg} alt="" />
-                    <p className="font-semibold">Add to cart</p>
+                    <p className="font-semibold text-sm">Add to cart</p>
                 </button>}
 
             </section>

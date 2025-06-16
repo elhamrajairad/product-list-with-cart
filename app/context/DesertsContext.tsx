@@ -6,6 +6,7 @@ export interface IDesertsProps {
     deserts: Deserts[];
     shoppingCart: IShoppingCart[];
     totalPrice: number;
+    loading: boolean;
     addToShoppingCart: (id: number) => void;
     removeFromShoppingCart: (id: number) => void;
     decreesDesert: (id: number) => void;
@@ -28,6 +29,7 @@ export function ProviderContextDeserts({ children }: IChildrenProps) {
     const [deserts, setDeserts] = useState<Deserts[]>([]);
     const [shoppingCart, setShoppingCart] = useState<IShoppingCart[]>([])
     const [totalPrice, setTotalPrice] = useState<number>(0)
+    const [loading, setLoading] = useState(true)
 
     async function getDeserts() {
         try {
@@ -37,6 +39,8 @@ export function ProviderContextDeserts({ children }: IChildrenProps) {
             setDeserts(data);
         } catch (err) {
             console.error("Error fetching deserts:", err);
+        } finally {
+            setLoading(false)
         }
     }
     function addToShoppingCart(id: number) {
@@ -88,10 +92,26 @@ export function ProviderContextDeserts({ children }: IChildrenProps) {
     }, [shoppingCart])
     useEffect(() => {
         getDeserts()
+        const currentLocalStorage = localStorage.getItem("shoppingCart");
+        if (currentLocalStorage) {
+            try {
+                const parsedDeserts = JSON.parse(currentLocalStorage);
+                if (Array.isArray(parsedDeserts)) {
+                    setShoppingCart(parsedDeserts);
+                }
+            } catch (e) {
+                console.error("Failed to parse deserts from localStorage:", e);
+            }
+        }
     }, [])
 
+
+    useEffect(() => {
+        localStorage.setItem("shoppingCart", JSON.stringify(shoppingCart))
+    }, [shoppingCart])
+
     return (
-        <DesertsContext.Provider value={{ deserts, shoppingCart, totalPrice, addToShoppingCart, removeFromShoppingCart, decreesDesert }}>
+        <DesertsContext.Provider value={{ deserts, shoppingCart, totalPrice, addToShoppingCart, removeFromShoppingCart, decreesDesert, loading }}>
             {children}
         </DesertsContext.Provider>
     );
