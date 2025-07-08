@@ -1,36 +1,60 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🛒 Product List with Cart
 
-## Getting Started
+A responsive product listing app with shopping cart functionality.  
+Built with **Next.js**, **TypeScript**, and **Tailwind CSS** as part of practice projects from Frontend Mentor.
 
-First, run the development server:
+## 🔍 Overview
+
+This project includes:
+
+- Product listing from a local JSON or API
+- Add to cart and remove from cart functionality
+- Quantity management in the cart
+- Responsive layout (Mobile + Desktop)
+
+## 📸 Preview
+
+![Preview Screenshot](https://github.com/elhamrajairad/product-list-with-cart/blob/main/public/screencapture-localhost-3000-2025-07-08-18_39_41.png)
+
+## 🛠️ Built With
+
+- [Next.js](https://nextjs.org/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Tailwind CSS](https://tailwindcss.com/)
+
+## 🚀 Getting Started
+
+Clone the repository and run it locally:
 
 ```bash
+git clone https://github.com/elhamrajairad/product-list-with-cart.git
+cd product-list-cart
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+💡 What I Learned
 
-## Learn More
+Structuring reusable components in Next.js
 
-To learn more about Next.js, take a look at the following resources:
+Managing cart state with React hooks
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Creating modals and handling outside click events
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Building responsive UIs with Tailwind
 
-## Deploy on Vercel
+Fetching data and rendering conditionally
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+✅ Status
+
+Finished – May still improve styles or refactor logic later.
+
+## 🧠 Credits
+Challenge from [front-mentor](https://www.frontendmentor.io/home)
+
+📁 License
+
+This project is open source and available under the MIT License.
